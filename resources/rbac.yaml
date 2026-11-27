@@ -1,0 +1,17 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: { name: helm-deployer, namespace: __TARGET_NS__ }
+rules:
+- apiGroups: ["", "apps", "batch", "networking.k8s.io", "policy", "autoscaling"]
+  resources: ["*"]
+  verbs: ["*"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles", "rolebindings"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: { name: helm-deployer, namespace: __TARGET_NS__ }
+subjects:
+- { kind: ServiceAccount, name: __SA__, namespace: __AGENT_NS__ }
+roleRef: { apiGroup: rbac.authorization.k8s.io, kind: Role, name: helm-deployer }
