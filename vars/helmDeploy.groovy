@@ -21,7 +21,7 @@ spec:
 """) {
       node(POD_LABEL) {
         container('kubectl') {
-          def rbac = libraryResource('rbac.yaml')
+          def rbac = libraryResource('helm-deployer-rbac.yaml')
             .replace('__TARGET_NS__', ns)
             .replace('__SA__', sa)
             .replace('__AGENT_NS__', agentNs)
