@@ -5,7 +5,7 @@ def call(Map cfg = [:], Closure body) {
   def agentNs   = cfg.agentNamespace ?: 'jenkins'
   def sa        = cfg.serviceAccount ?: "helm-deployer-${ns}"
   def helmImage = cfg.helmImage ?: 'alpine/helm:3.16.3'
-  def kubectlImg= cfg.kubectlImage ?: 'bitnami/kubectl:1.31'
+  def kubectlImg= cfg.kubectlImage ?: 'kubectl:1.36-alpine-dev'
 
   // ---- Stage 1: auth + namespace bootstrap (idempotent) ----
   stage("Prepare ${ns}") {
