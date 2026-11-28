@@ -60,8 +60,6 @@ spec:
         container('helm') {
           checkout scm   // so engineers can use values files from their repo
           withEnv(["NAMESPACE=${ns}", "HELM_NAMESPACE=${ns}"]) {
-            which kubectl helm; ls /var/run/secrets/kubernetes.io/serviceaccount/
-            env | grep -E 'KUBERNETES_SERVICE|KUBECONFIG'
             body()
           }
         }
