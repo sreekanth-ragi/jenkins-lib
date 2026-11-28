@@ -36,7 +36,6 @@ else
 fi
 kubectl create serviceaccount "$SA" -n "$AGENT_NS" --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f rbac.yaml
-kubectl auth can-i create deployments -n "$NS" --as="system:serviceaccount:$AGENT_NS:$SA"
 '''
           }
         }
