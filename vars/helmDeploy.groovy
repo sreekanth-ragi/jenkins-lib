@@ -4,7 +4,7 @@ def call(Map cfg = [:], Closure body) {
   def ns        = cfg.namespace
   def agentNs   = cfg.agentNamespace ?: 'jenkins'
   def sa        = cfg.serviceAccount ?: "helm-deployer-${ns}"
-  def helmImage = cfg.helmImage ?: 'alpine/helm:3.16.3'
+  //def helmImage = cfg.helmImage ?: 'alpine/helm:3.16.3'
   def kubectlImg= cfg.kubectlImage ?: 'alpine/k8s:1.34.13'
 
   // ---- Stage 1: auth + namespace bootstrap (idempotent) ----
@@ -52,7 +52,7 @@ kind: Pod
 spec:
   containers:
   - name: helm
-    image: ${helmImage}
+    image: ${kubectlImg}
     command: ["sleep"]
     args: ["infinity"]
 """) {
